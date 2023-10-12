@@ -1,0 +1,21 @@
+@import '../../styles/globals.scss';
+
+.text-input__icon {
+ display: flex;
+ justify-content: flex-end;
+ align-items: flex-end;
+ position: absolute;
+ padding: 6px 8px;
+ background: none;
+ border: none;
+ top: 11px;
+ right: 10px;
+
+ svg {
+  color: $G100;
+ }
+
+ &:focus{
+ border: none;
+ }
+}

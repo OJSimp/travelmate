@@ -1,0 +1,38 @@
+@import '../../styles/globals.scss';
+
+.header--search{
+ display: flex;
+ position: fixed;
+ top: 0;
+ width: 100%;
+ padding: 8px 24px;
+ gap: 16px;
+ z-index: 10;
+ align-items: center;
+ 
+ border-bottom: 1px solid $G25;
+ background: rgba(255, 255, 255, 0.90);
+ backdrop-filter: blur(10px);
+
+ .header-search__btns-right{
+ display: flex;
+ gap: 4px;
+ }
+}
+
+.btn--search{
+ display: flex;
+ padding: 14px 16px;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%;
+
+ border-radius: 4px;
+ border: 1px solid #E9E9E9;
+
+ color: $G300;
+
+ span{
+  padding-top: 6px;
+ }
+}
