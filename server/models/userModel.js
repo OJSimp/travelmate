@@ -9,39 +9,26 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
 });
 
-// sign up user method // signup() // not an arrow function
+// sign up user method // signup()
 
 userSchema.statics.signup = async function (email, password) {
-  // email validation // using validator package returns boolean
-  if (!validator.isEmail(email)) {
-    throw Error("Email is invalid ");
-  }
-
-  if (!email && password) {
-    throw Error("Email is empty");
-  }
-
-  if (email && !password) {
-    throw Error("Password is empty");
-  }
-
-  // no email or password
-  if (!email || !password) {
-    throw Error("Email & Password Empty");
-  }
-
-  // password strength // using validator package returns boolean
-
-  // check the user against the database
+  // Email verification
   const existingEmail = await this.findOne({ email });
-  // if the email exists throw error
   if (existingEmail) {
-    throw Error("This is an existing email");
+    throw new Error("This is an existing email.");
+  } else if (!email) {
+    throw new Error("Email is empty");
+  } else if (!validator.isEmail(email)) {
+    throw new Error("Email is invalid.");
   }
 
-  // password encryption // salt is an special encryption key on the end of the password encryption
+  // Password verifcation
+  if (email && !password) {
+    throw new Error("Password is empty");
+  }
+
+  // Create user in database
   const salt = await bcrypt.genSalt(10);
-  // hash is the pasword plus the salt on the end
   const hash = await bcrypt.hash(password, salt);
 
   const user = await this.create({

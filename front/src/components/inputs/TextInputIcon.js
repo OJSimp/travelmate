@@ -3,7 +3,7 @@ import "./TextInput.scss";
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 import { useState } from "react";
 
@@ -39,18 +39,10 @@ export default function TextInput(props) {
       </label>
       {/* If there is an error for this input return error message */}
       {props.error && (
-        <div
-          className={
-            props.error
-              ? "text-input__error-message hide"
-              : "text-input__error-message"
-          }
-        >
-          <span>
-            <ErrorOutlineIcon />
-          </span>
+        <span className="error-message text-input__error-message">
+          <InfoOutlinedIcon className="icon--small" />
           {props.error}
-        </div>
+        </span>
       )}
 
       {/* Show and hide password on click of eye icon */}

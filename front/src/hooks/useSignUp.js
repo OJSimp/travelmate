@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export const useSignUp = () => {
   //if there is an error  // is loading
-  const [error, setError] = useState(null);
+  const [errorEmail, setErrorEmail] = useState(null);
+  const [errorPassword, setErrorPassword] = useState(null);
   const [loading, setLoading] = useState(null);
 
   const navigate = useNavigate();
@@ -17,7 +18,8 @@ export const useSignUp = () => {
   const signup = async (user) => {
     // starting request - so is loading & reset errors to null
     setLoading(true);
-    setError(null);
+    setErrorEmail(null);
+    setErrorPassword(null);
 
     const response = await fetch("http://localhost:8000/api/user/signup/", {
       method: "POST",
@@ -31,16 +33,23 @@ export const useSignUp = () => {
     // // send back webtoken if sucessful
     const json = await response.json();
 
-    console.log(json);
+    // console.log(json);
 
     if (!response.ok) {
       // if not sucessful - send back error and finished loading
       setLoading(false);
-      setError(json.error);
+
+      if (json.emailError) {
+        setErrorEmail(json.emailError);
+      }
+      if (json.passwordError) {
+        setErrorPassword(json.passwordError);
+      }
+
+      console.log(json.emailError);
     }
     if (response.ok) {
       // if sucessful - save user to local storage - (log user in)
-      // userController.js returns in json email and token, from backend
       localStorage.setItem("user", JSON.stringify(json));
 
       // update authContext using authContext hook
@@ -56,5 +65,5 @@ export const useSignUp = () => {
   };
 
   // we need to return the "signup function", the "loading state" and the "error state"
-  return { signup, loading, error };
+  return { signup, loading, errorEmail, errorPassword };
 };

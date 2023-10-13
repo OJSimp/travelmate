@@ -18,7 +18,7 @@ import { useSignUp } from "../../hooks/useSignUp";
 function SignUp() {
   const [user, setUser] = useState({ email: "", password: "" });
 
-  const { signup, error, loading } = useSignUp();
+  const { signup, loading, errorEmail, errorPassword } = useSignUp();
 
   // Sign up user
   const handleSignUp = async (e) => {
@@ -40,14 +40,14 @@ function SignUp() {
             id="email"
             type="text"
             label="Email address"
-            error={error}
+            error={errorEmail}
             setInputValue={(value) => setUser({ ...user, email: value })}
           />
           <TextInputIcon
             id="password"
             type="password"
             label="Password"
-            // error={error}
+            error={errorPassword}
             setInputValue={(value) => setUser({ ...user, password: value })}
           />
           <button className="btn-primary">Continue</button>
