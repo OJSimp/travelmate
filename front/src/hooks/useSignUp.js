@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useAuthContext } from "./useAuthContext";
+import { useAuthContext } from "./useAuthContext";
 
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ export const useSignUp = () => {
   const navigate = useNavigate();
 
   // use the dispatch function to fire the right "case"
-  // const { dispatch } = useAuthContext();
+  const { dispatch } = useAuthContext();
 
   //sending data to databse using a post request
   const signup = async (user) => {
@@ -45,8 +45,6 @@ export const useSignUp = () => {
       if (json.passwordError) {
         setErrorPassword(json.passwordError);
       }
-
-      console.log(json.emailError);
     }
     if (response.ok) {
       // if sucessful - save user to local storage - (log user in)
@@ -54,7 +52,7 @@ export const useSignUp = () => {
 
       // update authContext using authContext hook
       console.log("sent as payload", json);
-      // dispatch({ type: "LOGIN", paylaod: json });
+      dispatch({ type: "LOGIN", paylaod: json });
 
       // finsihed loading now false
       setLoading(false);
