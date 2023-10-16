@@ -14,12 +14,13 @@ import { useLogIn } from "../../hooks/useLogIn";
 function LogIn() {
   const [user, setUser] = useState({ email: "", password: "" });
 
-  // const { login, error, loading } = useLogIn();
+  const { login, loading, errorEmail, errorPassword } = useLogIn();
 
   // Log in user
   const handleLogIn = async (e) => {
     e.preventDefault();
-    console.log(user);
+
+    await login(user);
   };
 
   return (
@@ -35,7 +36,7 @@ function LogIn() {
             id="email"
             type="text"
             label="Email address"
-            error="error message"
+            error={errorEmail}
             setInputValue={(value) => setUser({ ...user, email: value })}
           />
           {/* Password Input */}
@@ -43,7 +44,7 @@ function LogIn() {
             id="password"
             type="password"
             label="Password"
-            error="error message"
+            error={errorPassword}
             setInputValue={(value) => setUser({ ...user, password: value })}
           />
           <button className="btn-primary">Continue</button>

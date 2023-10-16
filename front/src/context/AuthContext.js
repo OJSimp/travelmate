@@ -31,8 +31,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, []);
 
-  console.log("AuthContext state:", state);
-
   return (
     // component made line 3 // this wraps the app
     <AuthContext.Provider value={{ ...state, dispatch }}>

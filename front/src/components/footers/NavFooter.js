@@ -8,7 +8,11 @@ import PersonIcon from "@mui/icons-material/Person";
 
 import { NavLink } from "react-router-dom";
 
+// Hooks
+import useAuth from "../../hooks/useAuth";
+
 const NavFooter = () => {
+  const isAuthenticated = useAuth();
   return (
     <footer className="footer--nav">
       <NavLink className="btn-footer" to="/">
@@ -29,12 +33,22 @@ const NavFooter = () => {
         </span>
         My Trips
       </NavLink>
-      <NavLink className="btn-footer" to="/access">
-        <span>
-          <PersonIcon />
-        </span>
-        Profile
-      </NavLink>
+
+      {isAuthenticated ? (
+        <NavLink className="btn-footer" to="/profile">
+          <span>
+            <PersonIcon />
+          </span>
+          Profile
+        </NavLink>
+      ) : (
+        <NavLink className="btn-footer" to="/access">
+          <span>
+            <PersonIcon />
+          </span>
+          Log in
+        </NavLink>
+      )}
     </footer>
   );
 };

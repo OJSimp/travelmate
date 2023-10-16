@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 // Components
 import PageNavHeader from "../../components/headers/PageNavHeader";
 import AccessFooter from "../../components/footers/AcessFooter";
+import NavFooter from "../../components/footers/NavFooter";
 
 function Access() {
   return (
@@ -76,6 +77,7 @@ function Access() {
         </div>
       </section>
       <AccessFooter />
+      <NavFooter />
     </>
   );
 }

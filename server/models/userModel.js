@@ -42,27 +42,32 @@ userSchema.statics.signup = async function (email, password) {
 // log in user method // login()
 
 userSchema.statics.login = async function (email, password) {
-  // validation
-  // no email or password
-  if (!email || !password) {
-    throw Error("Email & Password Empty");
+  try {
+    // Validation
+    if (!email) {
+      throw new Error("Email is empty.");
+    } else if (!password) {
+      throw new Error("Password is empty.");
+    }
+
+    // Check if the email exists
+    const user = await this.findOne({ email });
+    if (!user) {
+      throw new Error("This is an incorect email.");
+    }
+
+    // Using bcrypt to check if the password matches
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+      throw new Error("Incorrect Password.");
+    }
+
+    // If email and password are correct, return the user
+    return user;
+  } catch (error) {
+    throw error; // Re-throw the error for handling at a higher level
   }
-
-  // check the user against the database
-  const user = await this.findOne({ email });
-  // if the email exists throw error
-  if (!user) {
-    throw Error("Incorrect email");
-  }
-
-  // using bcrypt to check if the password matches
-  const match = await bcrypt.compare(password, user.password);
-
-  if (!match) {
-    throw Error("Incorrect Passoword");
-  }
-
-  return user;
 };
 
 module.exports = mongoose.model("User", userSchema);

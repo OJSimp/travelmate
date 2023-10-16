@@ -10,8 +10,6 @@ import PageNavHeader from "../../components/headers/PageNavHeader";
 import TextInput from "../../components/inputs/TextInput";
 import TextInputIcon from "../../components/inputs/TextInputIcon";
 
-//
-
 //Hooks
 import { useSignUp } from "../../hooks/useSignUp";
 

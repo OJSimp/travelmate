@@ -51,7 +51,6 @@ export const useSignUp = () => {
       localStorage.setItem("user", JSON.stringify(json));
 
       // update authContext using authContext hook
-      console.log("sent as payload", json);
       dispatch({ type: "LOGIN", paylaod: json });
 
       // finsihed loading now false
