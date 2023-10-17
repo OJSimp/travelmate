@@ -12,6 +12,10 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import useAuth from "../hooks/useAuth";
 import Access from "./Access/Access";
 
+// Icons
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import AccessFooter from "../components/footers/AcessFooter";
+
 const Profile = () => {
   const [email, setEmail] = useState();
   const [ID, setID] = useState();
@@ -23,10 +27,10 @@ const Profile = () => {
 
   const { user } = useAuthContext();
 
-  if (user) {
-    const userEmail = user.email;
-    console.log(userEmail);
-  }
+  // if (user) {
+  //   const userEmail = user.email;
+  //   console.log(userEmail);
+  // }
 
   const navigate = useNavigate();
 
@@ -37,14 +41,79 @@ const Profile = () => {
   return (
     <>
       {isAuthenticated ? (
-        <div>
-          <h4>{}</h4>
-          <button className="btn-primary" onClick={handleLogOut}>
-            LOG OUT
+        <div className="page page--profile">
+          <div className="profile__user">
+            <div className="user__profile-image"></div>
+            <h4>{user.email}</h4>
+          </div>
+
+          <div className="profile__container">
+            <h3>Profile</h3>
+            <NavLink className="link--profile" to="/add-property">
+              Personal information
+              <span>
+                <ChevronRightIcon />
+              </span>
+            </NavLink>
+            <NavLink className="link--profile" to="/add-property">
+              My trips
+              <span>
+                <ChevronRightIcon />
+              </span>
+            </NavLink>
+            <NavLink className="link--profile" to="/add-property">
+              Notifications
+              <span>
+                <ChevronRightIcon />
+              </span>
+            </NavLink>
+          </div>
+
+          <div className="profile__container">
+            <h3>Add a listing</h3>
+            <NavLink className="link--profile" to="/add-property">
+              Create a property listing
+              <span>
+                <ChevronRightIcon />
+              </span>
+            </NavLink>
+            <NavLink className="link--profile" to="/add-property">
+              Create an experience listing
+              <span>
+                <ChevronRightIcon />
+              </span>
+            </NavLink>
+          </div>
+
+          <div className="profile__container">
+            <h3>Support</h3>
+            <NavLink className="link--profile" to="/add-property">
+              Personal information
+              <span>
+                <ChevronRightIcon />
+              </span>
+            </NavLink>
+            <NavLink className="link--profile" to="/add-property">
+              My trips
+              <span>
+                <ChevronRightIcon />
+              </span>
+            </NavLink>
+            <NavLink className="link--profile" to="/add-property">
+              Notifications
+              <span>
+                <ChevronRightIcon />
+              </span>
+            </NavLink>
+          </div>
+
+          <div className="profile__container--bottom">
+            <p>$NZD</p>
+            <p>English (UK)</p>
+          </div>
+          <button className="btn-outline" onClick={handleLogOut}>
+            Log out
           </button>
-          <NavLink className="link--profile" to="/add-property">
-            Create a property Listing
-          </NavLink>
         </div>
       ) : (
         <Access />

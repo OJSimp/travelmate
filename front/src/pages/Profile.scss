@@ -1,0 +1,46 @@
+@import '.././styles/globals.scss';
+
+.page--profile{
+margin-bottom: 82px;
+}
+
+.profile__user{
+ display: flex;
+ align-items: center;
+ gap: 16px;
+ padding: 16px 0px;
+
+ .user__profile-image {
+   height: 60px;
+   width: 60px;
+   border-radius: 100px;
+   background-color: $G50;
+  }
+}
+
+.link--profile{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%;
+ font-size: 16px;
+ color: $G100;
+ font-weight: 400;
+ padding: 8px 0px;
+}
+
+.profile__container{
+ display: flex;
+ flex-direction: column;
+ align-items: flex-start;
+ gap: 8px;
+ padding: 16px 0px;
+ border-bottom: 1px solid $G50;
+}
+
+.profile__container--bottom{
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+ padding: 8px 0;
+}

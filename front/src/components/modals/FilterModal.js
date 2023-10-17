@@ -1,17 +1,17 @@
 import HeaderModal from "./HeaderModal";
 
-const SearchModal = ({ isModalOpen, headingModal, onClose }) => {
+const FilterModal = ({ isModalOpen, onClose }) => {
   if (!isModalOpen) return null;
 
   return (
     <div className="modal">
       <HeaderModal
         isOpen={isModalOpen}
-        headingModal={headingModal}
+        headingModal="Filter"
         onClose={onClose}
       />
     </div>
   );
 };
 
-export default SearchModal;
+export default FilterModal;
